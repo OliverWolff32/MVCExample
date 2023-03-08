@@ -12,9 +12,6 @@ public class Model implements MessageHandler {
   // Messaging system for the MVC
   private final Messenger mvcMessaging;
 
-  // Model's data variables
-  private int variable1;
-  private int variable2;
 
   /**
    * Model constructor: Create the data representation of the program

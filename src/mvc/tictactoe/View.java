@@ -93,7 +93,6 @@ public class View extends javax.swing.JFrame implements MessageHandler {
 
         jLabel12.setFont(new java.awt.Font("Liberation Sans", 0, 25)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("asdf");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
