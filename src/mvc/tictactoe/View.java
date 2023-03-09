@@ -83,6 +83,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         jButton2.setName("00"); // NOI18N
 
         jButton3.setName("02"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setName("01"); // NOI18N
 
@@ -159,6 +164,12 @@ public class View extends javax.swing.JFrame implements MessageHandler {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        JButton button = (JButton)evt.getSource();
+        this.mvcMessaging.notify("playerMove", button.getName());
+    }//GEN-LAST:event_jButton3ActionPerformed
 
   /**
    * @param args the command line arguments
