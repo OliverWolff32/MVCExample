@@ -81,27 +81,67 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton2.setName("00"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton3.setName("02"); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                onClick(evt);
             }
         });
 
         jButton4.setName("01"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton5.setName("12"); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton6.setName("11"); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton7.setName("10"); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton8.setName("21"); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton9.setName("22"); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton10.setName("20"); // NOI18N
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Liberation Sans", 0, 25)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -165,11 +205,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void onClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClick
         // TODO add your handling code here:
         JButton button = (JButton)evt.getSource();
         this.mvcMessaging.notify("playerMove", button.getName());
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_onClick
 
   /**
    * @param args the command line arguments
