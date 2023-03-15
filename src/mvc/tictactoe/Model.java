@@ -30,6 +30,8 @@ public class Model implements MessageHandler {
    */
   public void init() {
     this.newGame();
+    this.mvcMessaging.subscribe("newGameClicked", this);
+    this.mvcMessaging.subscribe("buttonClicked", this);
     this.mvcMessaging.subscribe("playerMove", this);
     this.mvcMessaging.subscribe("newGame", this);
   }
@@ -59,6 +61,9 @@ public class Model implements MessageHandler {
     
     // playerMove message handler
     if (messageName.equals("playerMove")) {
+        
+        
+        
       // Get the position string and convert to row and col
       String position = (String)messagePayload;
       Integer row = new Integer(position.substring(0,1));
@@ -72,15 +77,22 @@ public class Model implements MessageHandler {
           this.board[row][col] = "O";
         }
         // Send the boardChange message along with the new board 
+        this.whoseMove = !this.whoseMove;
+        this.mvcMessaging.notify("turnChange", this.whoseMove);
         this.mvcMessaging.notify("boardChange", this.board);
       }
       
     // newGame message handler
-    } else if (messageName.equals("newGame")) {
+    } else if (messageName.equals("newGame") || messageName.equals("newGameClicked")) {
       // Reset the app state
       this.newGame();
       // Send the boardChange message along with the new board 
       this.mvcMessaging.notify("boardChange", this.board);
+    }
+    else if (messageName.equals("buttonClicked")) {
+     
+        
+        
     }
 
   }
