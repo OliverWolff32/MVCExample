@@ -47,7 +47,40 @@ public class Model implements MessageHandler {
     }
     this.whoseMove = false;
     this.gameOver = false;
+    this.mvcMessaging.notify("turnChange", this.whoseMove);
   }
+  
+  private String winner() {
+      int count = 0;
+      //CHECK ROWS
+      for(String[] rows : this.board) {
+          count = 0;
+          for(String val : rows) {
+              if(val.equals("X")) {
+                  count--;
+              } else if (val.equals("O")) {
+                  count++;
+              }
+              
+              if(count == -3) {
+                  return "X";
+              } else if(count == 3){ 
+                  return "O";
+              }
+          }
+      } 
+      
+      //CHECK COLS
+      for(int col = 0; col < this.board[0].length; col++) {
+          for (int row = 0; row < this.board.length; row++) {
+              if
+          }
+      }
+      
+      return "";
+  }
+  
+  
 
   
   @Override
