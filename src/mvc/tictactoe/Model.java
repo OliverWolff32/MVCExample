@@ -71,11 +71,48 @@ public class Model implements MessageHandler {
       } 
       
       //CHECK COLS
+      count = 0;
       for(int col = 0; col < this.board[0].length; col++) {
           for (int row = 0; row < this.board.length; row++) {
-              if
+              if(this.board[row][col].equals("X")) {
+                  count++;
+              }
+              if(this.board[row][col].equals("O")) {
+                  count--;
+              }
+              
+              if(count == -3) {
+                  return "X";
+              } else if(count == 3){ 
+                  return "O";
+              }
           }
       }
+      
+      //CHECK DIAGONALS
+      if(!this.board[0][0].equals("")) {
+          if(this.board[0][0].equals(this.board[1][1]) && this.board[1][1].equals(this.board[2][2])) {
+              return this.board[1][1];
+          }  //top left to bottom right
+      }
+      if(!this.board[0][2].equals("")) {
+          if(this.board[0][2].equals(this.board[1][1]) && this.board[1][1].equals(this.board[2][0])) {
+              return this.board[1][1];
+          }  //top right to bottom left
+      }
+      
+      count = 0; 
+      for(String[] rows : this.board) {
+          for(String val : rows) {
+             if(!val.equals("")) {
+                 count++;
+             }
+          }
+      }
+      if(count == 9) {
+          return "TIE";
+      }
+      
       
       return "";
   }
