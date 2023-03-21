@@ -44,6 +44,8 @@ public class View extends javax.swing.JFrame implements MessageHandler {
       jButton7.setText(board[2][0]);
       jButton8.setText(board[2][1]);
       jButton9.setText(board[2][2]);
+      
+      
     } else if(messageName.equals("turnChange")) {
         String player = "";
         if ((boolean)messagePayload) {
@@ -52,6 +54,14 @@ public class View extends javax.swing.JFrame implements MessageHandler {
             player = "O";
         }
         jLabel12.setText(player + "'s turn");
+        
+        
+    } else if (messageName.equals("winner")) {
+        if("TIE".equals(messagePayload)) {
+            jLabel12.setText((String)messagePayload);
+        } else {
+            jLabel12.setText(messagePayload + " wins!");
+        }
     }
 
   }
@@ -60,6 +70,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
       this.mvcMessaging.subscribe("boardChange", this);
       this.mvcMessaging.subscribe("gameOver", this);
       this.mvcMessaging.subscribe("turnChange", this);
+      this.mvcMessaging.subscribe("winner", this);
   }
   
 

@@ -73,6 +73,7 @@ public class Model implements MessageHandler {
       //CHECK COLS
       count = 0;
       for(int col = 0; col < this.board[0].length; col++) {
+          count = 0;
           for (int row = 0; row < this.board.length; row++) {
               if(this.board[row][col].equals("X")) {
                   count++;
@@ -81,9 +82,9 @@ public class Model implements MessageHandler {
                   count--;
               }
               
-              if(count == -3) {
+              if(count == 3) {
                   return "X";
-              } else if(count == 3){ 
+              } else if(count == -3){ 
                   return "O";
               }
           }
@@ -131,26 +132,34 @@ public class Model implements MessageHandler {
     
     // playerMove message handler
     if (messageName.equals("playerMove")) {
-        
-        
-        
-      // Get the position string and convert to row and col
-      String position = (String)messagePayload;
-      Integer row = new Integer(position.substring(0,1));
-      Integer col = new Integer(position.substring(1,2));
-      // If square is blank...
-      if (this.board[row][col].equals("")) {
-        // ... then set X or O depending on whose move it is
-        if (this.whoseMove) {
-          this.board[row][col] = "X";
-        } else {
-          this.board[row][col] = "O";
+        if(!this.gameOver) {
+            // Get the position string and convert to row and col
+            String position = (String)messagePayload;
+            Integer row = new Integer(position.substring(0,1));
+            Integer col = new Integer(position.substring(1,2));
+            // If square is blank...
+            if (this.board[row][col].equals("")) {
+            // ... then set X or O depending on whose move it is
+            if (this.whoseMove) {
+              this.board[row][col] = "X";
+            } else {
+              this.board[row][col] = "O";
+            }
+            this.whoseMove = !this.whoseMove;
+            this.mvcMessaging.notify("boardChange", this.board);
+            this.mvcMessaging.notify("turnChange", this.whoseMove);
+            if(!winner().equals("")) {
+                String winner = winner();
+                this.mvcMessaging.notify("winner", winner);
+                this.gameOver = true;
+            }
+            
         }
-        // Send the boardChange message along with the new board 
-        this.whoseMove = !this.whoseMove;
-        this.mvcMessaging.notify("turnChange", this.whoseMove);
-        this.mvcMessaging.notify("boardChange", this.board);
-      }
+        
+        
+        
+      
+    }
       
     // newGame message handler
     } else if (messageName.equals("newGame") || messageName.equals("newGameClicked")) {
@@ -158,11 +167,6 @@ public class Model implements MessageHandler {
       this.newGame();
       // Send the boardChange message along with the new board 
       this.mvcMessaging.notify("boardChange", this.board);
-    }
-    else if (messageName.equals("buttonClicked")) {
-     
-        
-        
     }
 
   }
